@@ -45,6 +45,30 @@ $(document).ready(function() {
         validatePassword();
         validateConfirmPassword();
 
+        if ($('.error:visible').length === 0) {
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: 'register.php', 
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                   
+                    $('#registration-form')[0].reset(); 
+
+                    alert(response);
+
+                    // console.log(response);
+
+                    // $('#status').text(response);
+                    // if (response === 'Registration successful!') {
+                    //     alert('Registration successful!');
+                    // } else {
+                    //     alert('Registration failed. Please try again.');
+                    // }
+                }
+            });
+        }
     });
 
     function validateFullName() {
